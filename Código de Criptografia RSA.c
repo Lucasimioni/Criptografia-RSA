@@ -41,7 +41,7 @@ int main()
     printf("\nnumero invalido\n");
     exit(0); /*encerra o programa caso não seja primo*/
   }
-  printf("\ndigite a mensagem para criptografar\n");
+  printf("\ndigite uma mensagem para criptografar\n");
 
   scanf(" %[^\n]s",msg); /*%[^\n]s será usada para contar espaço no vetor de string*/
   for(i = 0; msg[i] != '\0'; i++) /*Percorre a string 'msg' até encontrar o caractere '\0'(NULL)*/
@@ -73,8 +73,10 @@ void chave_criptografada()
 {
   int k;
   k = 0;
+  /*Loop para encontrar possíveis valores de 'e' (chave pública)*/
   for(i = 2; i < t; i++)
   {
+    /*Se 'i' não for coprimo com t (divisor comum), ignora*/
     if(t % i == 0)
      continue;
     flag = primo(i);
@@ -87,6 +89,7 @@ void chave_criptografada()
      d[k] = flag;
      k++;
     }
+    /*limita a 99 pares de chave púlicas/privadas*/
    if(k == 99)
     break;
    }
@@ -111,23 +114,24 @@ void criptografar()
 
   long int pt, ct, key = e[0], k, len;
   i = 0;
-  len = strlen(msg);
+  len = strlen(msg); /*obtém o comprimento da mensagem*/
   while(i != len)
   {
     pt = m[i];
     pt = pt - 96;
     k = 1;
+    /*processo de exponenciação modular: (pt ^ e) mod n*/
     for(j = 0; j < key; j++)
     {
      k = k * pt;
-     k = k % n;
+     k = k % n; /*aplica o módulo n para manter o número dentro do limite*/
     }
    temp[i] = k;
-   ct = k + 96;
+   ct = k + 96;  /*transforma de volta para o intervalo da tabela ASCII*/
    en[i] = ct;
    i++;
   }
-  en[i] = -1;
+  en[i] = -1; /*marca o fim da string criptografada*/
   printf("\n\nmensagem criptografada: \n");
   for(i = 0; en[i] != -1; i++)
     printf("%c", en[i]);
@@ -140,18 +144,21 @@ void descriptografar()
   i = 0;
   while(en[i] != -1)
   {
-    ct = temp[i];
+    ct = temp[i];  /*recupera o valor criptografado correspondente ao caractere*/
+
     k = 1;
+
+    /*realiza a exponenciação modular: (ct ^ d) mod n*/
     for(j = 0; j < key; j++)
     {
       k = k * ct;
       k = k % n;
     }
-   pt = k + 96;
+   pt = k + 96; /*reverte a normalização feita na criptografia (para voltar ao caractere original)*/
    m[i] = pt;
    i++;
   }
-  m[i] = -1;
+  m[i] = -1; /*marca o fim da mensagem decifrada*/
   printf("\n\nmensagem descriptografada: \n");
   for(i = 0; m[i] != -1; i++)
    printf("%c", m[i]);
