@@ -33,7 +33,6 @@ int main() {
         return 1;
     }
 
-
     printf("\nDigite o segundo numero primo (q):\n");
     scanf("%d", &q);
     if (!primo(q) || p == q) { /*verifica se o número é primo igualando com o já confirmado (p)*/
@@ -58,7 +57,6 @@ int main() {
         printf("Erro ao gerar chaves.\n");
         return 1;
     }
-
     /*mostra os pares possíveis de chaves públcas e privadas*/
     printf("\nPossiveis valores de 'e' e 'd' sao:\n");
     for (i = 0; i < j - 1; i++)
@@ -181,5 +179,5 @@ int descriptografar() {
 
 
     printf("\n");
- return 1;
+     return 1;
 }
