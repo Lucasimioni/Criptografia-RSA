@@ -32,6 +32,7 @@ int main() {
         printf("\nNumero invalido\n");
         return 1;
     }
+   
     printf("\nDigite o segundo numero primo (q):\n");
     scanf("%d", &q);
     if (!primo(q) || p == q) { /*verifica se o número é primo igualando com o já confirmado (p)*/
@@ -175,7 +176,6 @@ int descriptografar() {
     printf("\n\nMensagem descriptografada:\n");
     for (i = 0; mensagem_original[i] != -1; i++)
         printf("%c", mensagem_original[i]);
-
 
     printf("\n");
         return 1;
