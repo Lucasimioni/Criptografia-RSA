@@ -176,7 +176,6 @@ int descriptografar() {
     printf("\n\nMensagem descriptografada:\n");
     for (i = 0; mensagem_original[i] != -1; i++)
         printf("%c", mensagem_original[i]);
-
     printf("\n");
         return 1;
 }
