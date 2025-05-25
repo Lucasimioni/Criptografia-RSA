@@ -8,7 +8,7 @@
 int p, q, n, t, i, flag;
 /*p e q, são os dois números primos inseridos pelo usuário*/
 /*n é o produto de p e q*/
-/*t: totiente de n, dado por (p-1)*(q-1)*/
+/*t: totiente de n, dado por (p-1)(q-1)*/
 /*i, flag: auxiliares*/
 long int lista_expo_publica[50], lista_expo_Privada[50];
 /*listas com possíveis valores de chave pública e privada*/
@@ -29,11 +29,11 @@ int main() {
     printf("\nDigite o primeiro numero primo (p):\n");
     scanf("%d", &p);
     if (!primo(p)) { /*verifica se o número inserido é primo*/
-        printf("\nNumero invalido\n"); 
+        printf("\nNumero invalido\n");
         return 1;
     }
 
-    
+
     printf("\nDigite o segundo numero primo (q):\n");
     scanf("%d", &q);
     if (!primo(q) || p == q) { /*verifica se o número é primo igualando com o já confirmado (p)*/
@@ -58,13 +58,13 @@ int main() {
         printf("Erro ao gerar chaves.\n");
         return 1;
     }
-    
+
     /*mostra os pares possíveis de chaves públcas e privadas*/
     printf("\nPossiveis valores de 'e' e 'd' sao:\n");
     for (i = 0; i < j - 1; i++)
         printf("\n%ld\t%ld", lista_expo_publica[i], lista_expo_Privada[i]);
 
-    
+
     criptografar();
     descriptografar();
 
@@ -127,7 +127,7 @@ int criptografar() {
 
 
         k = 1;
-        for (j = 0; j < key; j++) { 
+        for (j = 0; j < key; j++) {
             k = k * pt;
             k = k % n;
         }
@@ -181,5 +181,5 @@ int descriptografar() {
 
 
     printf("\n");
-    return 1;
+ return 1;
 }
